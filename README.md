@@ -62,7 +62,6 @@ Seven benchmark cases are provided as representative examples:
 2. Whistler instability
 3. Firehose instability
 4. EMIC waves
-5. [Additional examples as needed]
 
 ## System Requirements
 
