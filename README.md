@@ -110,14 +110,14 @@ Currently, only a MATLAB version of **BO-PBK** is available. The code has been s
    - Configure `bo_wpdat.m` and run it to generate figures and save data as `*.dat` files.
 
 3. Show the benchmark cases
-    - **Example 1:**
+    **Example 1:**
     - 1. Run `case02.1_whistler/main_bopbk`
   Then run `./selected-plot/bo_wpdat`
     - 2. Copy `*.dat` files to `../../plt_Fig4/BOPBK_data`
     - 3. Repeat the above steps for `Whistler_Lazar11Fig2_pbk2/` and `Whistler_Lazar11Fig2_pbk6/`. After running each, copy the corresponding `./selected-plot/*.dat` files to `plt_Fig4/BOPBK_data`
     - 4. Run `/plt_Fig4/plt_benchmark_lazar2011Fig2.m`
   
-    - **Example 2:**
+    **Example 2:**
     - 1. Run `case03.1_firehose/Astfalk2017Fig1_OFHI3d_bm/main_bopbk.m`
     - 2. Copy `/output/*.dat` files to `../../plt_Fig8/pbk_data`
     - 3. Repeat the above steps for `Astfalk2017Fig1_OFHI3d_pbk210main_bopbk.m/`. After running it, copy the corresponding `output/*.dat` files to `plt_Fig8/pbk_data`
