@@ -1,15 +1,8 @@
 # BO-PBK
 
-**Version 1.0 beta** | [GitHub Repository](https://github.com/baiweiphys/BOPBK/)
+**Version 1.0** | [GitHub Repository](https://github.com/baiweiphys/BOPBK/)
 
-
-## License
-
-This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
-
-
-**BO-PBK** (BO-Product-Bi-Kappa) is a numerical code developed by **Wei Bai** and **Huasheng Xie** for analyzing plasma waves and instabilities in both space and laboratory plasmas. 
-The code specializes in obliquely propagating waves in magnetized, multi-species hot plasmas.
+**BO-PBK** (BO-Product-Bi-Kappa) is a numerical code developed by **Wei Bai** and **Huasheng Xie** for analyzing plasma waves and instabilities in both space and laboratory plasmas. The code specializes in obliquely propagating waves in magnetized, multi-species hot plasmas.
 
 The code supports a wide range of multi-component velocity distribution functions, such as:
 - Anisotropic drift loss-cone product-bi-Kappa (PBK)
@@ -47,6 +40,20 @@ The code supports various velocity distribution functions, including:
 Benchmark tests confirm that the solver accurately reproduces standard kinetic results and efficiently resolves waves and instabilities. 
 BO-PBK provides a robust and computationally efficient tool for wave and stability analysis in complex plasma systems relevant to both space and laboratory applications.
 
+## Input Parameters
+
+The background magnetic field is denoted as $B_0$ (in Tesla), the oblique propagation angle as $\theta$ (in degrees), $J$ as a non-negative integer for $J$-pole expansion, and `nk` as the number of grid points.
+
+The `bopbk.in` file requires the following parameters for each species $s$:
+- $q_s$: charge (in elementary charge units)
+- $m_s$: mass (relative to electron mass)
+- $n_s$: number density (in m⁻³)
+- $T_{\parallel s}$ and $T_{\perp s}$: parallel and perpendicular temperatures (in eV)
+- $u_{s0}/c$: drift velocity (normalized by speed of light)
+- $\sigma_s$: loss-cone factor
+- $\kappa_{\parallel s}$ and $\kappa_{\perp s}$: parallel and perpendicular kappa indices
+- $\kappa_{\parallel s,\text{th}}$: threshold value for $\kappa_{\parallel s}$
+- $N_s$: Bessel function truncation order for species $s$
 
 ## Benchmark Examples
 
@@ -56,14 +63,14 @@ Seven benchmark cases are provided as representative examples:
 3. Firehose instability
 4. EMIC waves
 
-
 ## Development Status
 
 ### Current Release
-- **MATLAB**: Available (R2024a-compatible)
+- **MATLAB version**: Available (R2024a compatible)
 
 ### In Development
-- **Julia**: In progress (porting & migration done) 
+- **Julia version**: ALgorithm porting/migration completed
+
 
 
 ## File Descriptions
@@ -87,11 +94,15 @@ Seven benchmark cases are provided as representative examples:
   - **`M_*.m`** - Functions that construct equivalent matrices for PBK, BM, and mixed distribution models.
   - **`getLen_*.m`** - Utility functions for determining matrix dimensions and sizes.
 
+### Utility Functions
+- **`tools/`** - Directory containing auxiliary utility functions.
+  - **`createDateFile.m`** - Creates a new timestamped data folder if the specified directory does not exist, ensuring organized data storage.
+
 
 ## How to run the code:
 
 1. **Run a single test case**:
-   - Navigate to the specific case directory: `BO-PBK/examples/case_***/`
+   - Navigate to the specific case directory: `BO-PBK/examples/case_XXXX/`
    - Configure the input parameters in the input file `bopbk.in`
    - Set parameters such as `J`, `deg` (propagation angles in degrees), and `B0` (background magnetic field in z-direction)
    - Run the main script `main_bopbk.m`
@@ -114,9 +125,13 @@ Seven benchmark cases are provided as representative examples:
         - 3. Repeat the above steps for `Astfalk2017Fig1_OFHI3d_pbk210main_bopbk.m/`. After running it, copy the corresponding `output/*.dat` files to `plt_Fig8/pbk_data`
         - 4. Run `/plt_Fig8/plt_Astfalk2017fig1_contour2.m`
 
+4. **Customization**: To customize plots, modify the plotting section in `main_bopbk.m` or create your own plotting scripts.
 
 
-Ref: Bai, Wei, and Huasheng Xie. “BO-PBK: A comprehensive solver for dispersion relations of obliquely propagating waves in magnetized multi-species plasma with anisotropic loss-cone drift product-bi-kappa distribution.” arXiv preprint arXiv:2512.06901, 2025, https://arxiv.org/abs/2512.06901.
+## License
+
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
+
 
 
 
@@ -124,7 +139,7 @@ If you encounter any issues, kindly get in touch with us.
 
 Wei Bai, baiweiphys@gmail.com, baiwei12@mail.ustc.edu.cn, TYUT
 
-Huasheng Xie, huashengxie@gmail.com, xiehuasheng@enn.cn, ENN
+Huasheng Xie,  huashengxie@gmail.com, xiehuasheng@enn.cn, ENN
 
 
 Created by Wei Bai on 2024-07-24  
