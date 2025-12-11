@@ -8,15 +8,6 @@
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
 
-**BO-PBK** (BO-Product-Bi-Kappa), developed by Wei Bai and Huasheng Xie, is a numerical code for analyzing waves and instabilities in obliquely propagating, magnetized multi-species hot plasmas in space and laboratory settings.
-
-
-The code supports a wide range of multi-component velocity distributions, such as:
-- Anisotropic drift loss-cone product-bi-Kappa (PBK)
-- Anisotropic drift loss-cone Kappa-Maxwellian (KM)
-- Anisotropic drift loss-cone bi-Maxwellian (BM)
-- Hybrid combinations of these distributions
-
 ## Authors & Affiliations
 
 **Wei Bai**  
@@ -36,11 +27,14 @@ Email: huashengxie@gmail.com, xiehuasheng@enn.cn
 
 ## Program Description
 
-**BO-PBK** (BO-Product-Bi-Kappa) is a numerical code developed by **Wei Bai** and **Huasheng Xie** for analyzing plasma waves and instabilities in both space and laboratory plasmas. 
-The code specializes in obliquely propagating waves in magnetized, multi-species hot plasmas and supports a wide range of multi-component velocity distribution functions, including:
-- Anisotropic drift loss-cone product-bi-kappa (PBK)
-- Anisotropic drift loss-cone kappa-Maxwellian (KM)
-- Anisotropic drift loss-cone Bi-Maxwellian (BM)
+
+**BO-PBK** (BO-Product-Bi-Kappa), developed by Wei Bai and Huasheng Xie, is a numerical code for analyzing waves and instabilities in obliquely propagating, magnetized multi-species hot plasmas in space and laboratory settings.
+
+
+The code supports a wide range of multi-component velocity distributions, such as:
+- Anisotropic drift loss-cone product-bi-Kappa (PBK)
+- Anisotropic drift loss-cone Kappa-Maxwellian (KM)
+- Anisotropic drift loss-cone bi-Maxwellian (BM)
 - Hybrid combinations of these distributions
 
 
