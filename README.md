@@ -36,21 +36,17 @@ Email: huashengxie@gmail.com, xiehuasheng@enn.cn
 
 ## Program Description
 
-**BO-PBK** is a comprehensive code for simultaneously solving all significant roots of the dispersion relation for obliquely propagating waves in magnetized multi-species plasmas.
-
-The code supports various velocity distribution functions, including:
-- Anisotropic drift loss-cone product-bi-Kappa (PBK)
+**BO-PBK** (BO-Product-Bi-Kappa) is a numerical code developed by **Wei Bai** and **Huasheng Xie** for analyzing plasma waves and instabilities in both space and laboratory plasmas. 
+The code specializes in obliquely propagating waves in magnetized, multi-species hot plasmas and supports a wide range of multi-component velocity distribution functions, including:
+- Anisotropic drift loss-cone product-bi-kappa (PBK)
 - Anisotropic drift loss-cone kappa-Maxwellian (KM)
-- Anisotropic drift loss-cone bi-Maxwellian (BM)
+- Anisotropic drift loss-cone Bi-Maxwellian (BM)
 - Hybrid combinations of these distributions
-
-Benchmark tests confirm that the solver accurately reproduces standard kinetic results and efficiently resolves waves and instabilities. 
-BO-PBK provides a robust and computationally efficient tool for wave and stability analysis in complex plasma systems relevant to both space and laboratory applications.
 
 
 ## Benchmark Examples
 
-Seven benchmark cases are provided as representative examples:
+Four benchmark cases are provided as representative examples:
 1. R-, L-, and P-mode waves
 2. Whistler instability
 3. Firehose instability
@@ -96,14 +92,14 @@ Seven benchmark cases are provided as representative examples:
    - Set parameters such as `J`, `deg` (propagation angles in degrees), and `B0` (background magnetic field in z-direction)
    - Run the main script `main_bopbk.m`
    - Results will be displayed as plots and saved in the `output` directory
-2. **Visualize and save data**: (Xie 2019, CPC)
+2. **Visualize and save data**:
    - Navigate to `selected_plot/`
    - Configure `bo_wpdat.m` and run it to generate figures and save data as `*.dat` files.
 
 3. Show the benchmark cases
    - **Example 1:**
         - 1. Run `case02.1_whistler/main_bopbk`
-  Then run `./selected-plot/bo_wpdat`
+  Then run `selected-plot/bo_wpdat`
         - 2. Copy `*.dat` files to `../../plt_Fig4/BOPBK_data`
         - 3. Repeat the above steps for `Whistler_Lazar11Fig2_pbk2/` and `Whistler_Lazar11Fig2_pbk6/`. After running each, copy the corresponding `./selected-plot/*.dat` files to `plt_Fig4/BOPBK_data`
         - 4. Run `/plt_Fig4/plt_benchmark_lazar2011Fig2.m`
@@ -115,8 +111,9 @@ Seven benchmark cases are provided as representative examples:
         - 4. Run `/plt_Fig8/plt_Astfalk2017fig1_contour2.m`
 
 
+## References
+Bai, Wei, and Huasheng Xie. “BO-PBK: A comprehensive solver for dispersion relations of obliquely propagating waves in magnetized multi-species plasma with anisotropic loss-cone drift product-bi-kappa distribution.” arXiv preprint arXiv:2512.06901, 2025, https://arxiv.org/abs/2512.06901.
 
-Ref: Bai, Wei, and Huasheng Xie. “BO-PBK: A comprehensive solver for dispersion relations of obliquely propagating waves in magnetized multi-species plasma with anisotropic loss-cone drift product-bi-kappa distribution.” arXiv preprint arXiv:2512.06901, 2025, https://arxiv.org/abs/2512.06901.
 
 
 
