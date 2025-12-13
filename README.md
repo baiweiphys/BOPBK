@@ -2,18 +2,7 @@
 
 **Version 1.0 beta** | [GitHub Repository](https://github.com/baiweiphys/BOPBK/)
 
-
-**BO-PBK** (BO-Product-Bi-Kappa), developed by **Wei Bai** and **Huasheng Xie**, is a numerical code for analyzing waves and instabilities in obliquely propagating, magnetized multi-species hot plasmas in space and laboratory settings.
-
-The code supports a wide range of multi-component velocity distributions, such as:
-- Anisotropic drift loss-cone product-bi-kappa (PBK)
-- Anisotropic drift loss-cone kappa-Maxwellian (KM)
-- Anisotropic drift loss-cone bi-Maxwellian (BM)
-- Hybrid combinations of these distributions
-
-
-
-## Authors & Affiliations
+## Authors
 
 **Wei Bai**  
 College of Electrical and Power Engineering  
@@ -31,13 +20,15 @@ Email: huashengxie@gmail.com, xiehuasheng@enn.cn
 2025-12-08
 
 
-## Development Status
+## Program Description
 
-### Current Release
-- **MATLAB**: Available (R2024a-compatible)
+**BO-PBK** (BO-Product-Bi-Kappa), developed by **Wei Bai** and **Huasheng Xie**, is a numerical code for analyzing waves and instabilities in obliquely propagating, magnetized multi-species hot plasmas in space and laboratory settings.
 
-### In Development
-- **Julia**: In progress (porting & migration done)
+The code supports a wide range of multi-component velocity distributions, such as:
+- Anisotropic drift loss-cone product-bi-kappa (PBK)
+- Anisotropic drift loss-cone kappa-Maxwellian (KM)
+- Anisotropic drift loss-cone bi-Maxwellian (BM)
+- Hybrid combinations of these distributions
 
 
 ## Benchmark Examples
@@ -71,6 +62,15 @@ Four benchmark cases are provided as representative examples:
         - 2. Copy `/output/*.dat` files to `../../plt_Fig8/pbk_data`
         - 3. Repeat the above steps for `Astfalk2017Fig1_OFHI3d_pbk210main_bopbk.m/`. After running it, copy the corresponding `output/*.dat` files to `plt_Fig8/pbk_data`
         - 4. Run `/plt_Fig8/plt_Astfalk2017fig1_contour2.m`
+         
+
+## Development Status
+
+### Current Release
+- **MATLAB**: Available (R2024a-compatible)
+
+### In Development
+- **Julia**: In progress (porting & migration done)
 
 
 ## References
