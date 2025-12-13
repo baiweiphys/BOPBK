@@ -3,11 +3,6 @@
 **Version 1.0 beta** | [GitHub Repository](https://github.com/baiweiphys/BOPBK/)
 
 
-## License
-
-This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
-
-
 ## Authors & Affiliations
 
 **Wei Bai**  
@@ -109,16 +104,10 @@ Four benchmark cases are provided as representative examples:
 Wei Bai, and Huasheng Xie. “BO-PBK: A comprehensive solver for dispersion relations of obliquely propagating waves in magnetized multi-species plasma with anisotropic loss-cone drift product-bi-kappa distribution.” arXiv preprint arXiv:2512.06901, 2025, https://arxiv.org/abs/2512.06901.
 
 
-
-
 If you encounter any issues, kindly get in touch with us.
 
-Wei Bai, baiweiphys@gmail.com, baiwei12@mail.ustc.edu.cn, TYUT
 
-Huasheng Xie, huashengxie@gmail.com, xiehuasheng@enn.cn, ENN
+## License
 
-
-Created by Wei Bai on 2024-07-24  
-Updated by Wei Bai on 2025-12-11
-
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
