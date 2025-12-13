@@ -59,11 +59,8 @@ Four benchmark cases are provided as representative examples:
    - Set parameters such as `J`, `deg` (propagation angles in degrees), and `B0` (background magnetic field in z-direction)
    - Run the main script `main_bopbk.m`
    - Results will be displayed as plots and saved in the `output` directory
-2. **Visualize and save data**:
-   - Navigate to `selected_plot/`
-   - Configure `bo_wpdat.m` and run it to generate figures and save data as `*.dat` files.
 
-3. Show the benchmark cases
+2. Show the benchmark cases
    - **Example 1:**
         - 1. Run `case02.1_whistler/main_bopbk`
   Then run `selected-plot/bo_wpdat`
