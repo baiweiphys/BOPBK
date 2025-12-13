@@ -51,28 +51,6 @@ Four benchmark cases are provided as representative examples:
 - **Julia**: In progress (porting & migration done) 
 
 
-## File Descriptions
-
-
-### Example Cases
-- **`examples/Case_XXX/`** - Individual test case directories containing specific configuration files.
-  - **`main_bopbk.m`** - Primary driver routine that initiates the simulation with user-defined parameters.
-  - **`output/`** - Directory for storing simulation outputs, including dispersion relations and growth rates.
-  - (Optional module) **`selected_plot/`** - Contains enhanced visualization routines for 2D/3D plots (based on Xie 2019, CPC).
-
-### Core Source Code
-- **`src/`** - Directory containing the core numerical routines and functions.
-  - **`solver_pbk.m`** - Numerical solver for plasmas described by PBK distributions.
-  - **`solver_maxwell.m`** - Solver for BM plasma models.
-  - **`solver_mixed.m`** - Solver for hybrid plasma models combining PBK, KM, and BM distributions.
-  - **`func_Jpole.m`** - Implements the J-pole expansion technique for efficient evaluation of plasma dispersion functions.
-  - **`getIndexOfBlkMatrix_*.m`** - Functions for extracting indices of sub-block matrices in the global dispersion matrix of PBK, BM, and their mixed.
-  - **`maxwell_*.m`** - Coefficient calculation routines for the oblique BM plasma model.
-  - **`pbk_*.m`** - Coefficient calculation routines for the oblique PBK plasma model.
-  - **`M_*.m`** - Functions that construct equivalent matrices for PBK, BM, and mixed distribution models.
-  - **`getLen_*.m`** - Utility functions for determining matrix dimensions and sizes.
-
-
 ## How to run the code:
 
 1. **Run a single test case**:
@@ -103,8 +81,6 @@ Four benchmark cases are provided as representative examples:
 ## References
 Wei Bai, and Huasheng Xie. “BO-PBK: A comprehensive solver for dispersion relations of obliquely propagating waves in magnetized multi-species plasma with anisotropic loss-cone drift product-bi-kappa distribution.” arXiv preprint arXiv:2512.06901, 2025, https://arxiv.org/abs/2512.06901.
 
-
-If you encounter any issues, kindly get in touch with us.
 
 
 ## License
