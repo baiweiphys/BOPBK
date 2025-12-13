@@ -20,6 +20,17 @@ Email: huashengxie@gmail.com, xiehuasheng@enn.cn
 ## Release Date
 2025-12-08
 
+
+## Development Status
+
+### Current Release
+- **MATLAB**: Available (R2024a-compatible)
+
+### In Development
+- **Julia**: In progress (porting & migration done)
+
+
+
 ## Program Description
 
 
@@ -40,15 +51,6 @@ Four benchmark cases are provided as representative examples:
 2. Whistler instability
 3. Firehose instability
 4. EMIC waves
-
-
-## Development Status
-
-### Current Release
-- **MATLAB**: Available (R2024a-compatible)
-
-### In Development
-- **Julia**: In progress (porting & migration done) 
 
 
 ## How to run the code:
