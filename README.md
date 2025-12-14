@@ -63,16 +63,6 @@ Four benchmark cases are provided as representative examples:
         - 3. Repeat the above steps for `Astfalk2017Fig1_OFHI3d_pbk210main_bopbk.m/`. After running it, copy the corresponding `output/*.dat` files to `plt_Fig8/pbk_data`
         - 4. Run `/plt_Fig8/plt_Astfalk2017fig1_contour2.m`
          
-
-## Development Status
-
-### Current Release
-- **MATLAB**: Available (R2024a-compatible)
-
-### In Development
-- **Julia**: In progress (porting & migration done)
-
-
 ## References
 Wei Bai, and Huasheng Xie. “BO-PBK: A comprehensive solver for dispersion relations of obliquely propagating waves in magnetized multi-species plasma with anisotropic loss-cone drift product-bi-kappa distribution.” arXiv preprint arXiv:2512.06901, 2025, https://arxiv.org/abs/2512.06901.
 
