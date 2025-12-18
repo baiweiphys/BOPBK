@@ -60,7 +60,7 @@ Four benchmark cases are provided as representative examples:
    - **Example 2:**
         - 1. Run `case03.1_firehose/Astfalk2017Fig1_OFHI3d_bm/main_bopbk.m`
         - 2. Copy `/output/*.dat` files to `../../plt_Fig8/pbk_data`
-        - 3. Repeat the above steps for `Astfalk2017Fig1_OFHI3d_pbk210main_bopbk.m/`. After running it, copy the corresponding `output/*.dat` files to `plt_Fig8/pbk_data`
+        - 3. Repeat the above steps for `Astfalk2017Fig1_OFHI3d_pbk210/main_bopbk.m/`. After running it, copy the corresponding `output/*.dat` files to `plt_Fig8/pbk_data`
         - 4. Run `/plt_Fig8/plt_Astfalk2017fig1_contour2.m`
          
 ## References
