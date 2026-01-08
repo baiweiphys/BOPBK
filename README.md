@@ -1,9 +1,10 @@
 # BO-PBK
 
-**Version 1.0 beta** | [GitHub Repository](https://github.com/baiweiphys/BOPBK/)
+**Version 1.0 beta** (Released on 2025-12-08)  
+[GitHub Repository](https://github.com/baiweiphys/BOPBK/)
+
 
 ## Authors
-
 **Wei Bai**  
 College of Electrical and Power Engineering  
 Taiyuan University of Technology  
@@ -16,24 +17,24 @@ Hebei Key Laboratory of Compact Fusion
 Langfang 065001, China  
 Email: huashengxie@gmail.com, xiehuasheng@enn.cn
 
-## Release Date
-2025-12-08
 
 
-## Program Description
+## Description
 
-**BO-PBK** (BO-Product-Bi-Kappa), developed by **Wei Bai** and **Huasheng Xie**, is a numerical code for analyzing waves and instabilities in obliquely propagating, magnetized multi-species hot plasmas in space and laboratory settings.
+**BO-PBK** (BO-Product-Bi-Kappa), developed by Wei Bai and Huasheng Xie, is a numerical code for analyzing waves and instabilities in obliquely propagating, magnetized multi-species hot plasmas in space and laboratory settings.
 
-The code supports a wide range of multi-component velocity distributions, such as:
+The code supports a wide range of multi-component velocity distributions, including:
 - Anisotropic drift loss-cone product-bi-kappa (PBK)
 - Anisotropic drift loss-cone kappa-Maxwellian (KM)
 - Anisotropic drift loss-cone bi-Maxwellian (BM)
 - Hybrid combinations of these distributions
 
 
+
 ## Installation / Requirements
 The code requires **MATLAB** (tested on R2023b–R2025a).  
 **No additional toolboxes are needed** (uses only built-in MATLAB functions).
+
 
 
 ## Benchmark Examples
