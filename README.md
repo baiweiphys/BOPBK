@@ -31,6 +31,11 @@ The code supports a wide range of multi-component velocity distributions, such a
 - Hybrid combinations of these distributions
 
 
+## Installation / Requirements
+The code requires **MATLAB** (tested on R2023b–R2025a).  
+**No additional toolboxes are needed** (uses only built-in MATLAB functions).
+
+
 ## Benchmark Examples
 
 Four benchmark cases are provided as representative examples:
