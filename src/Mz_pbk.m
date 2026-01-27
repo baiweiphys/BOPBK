@@ -9,26 +9,36 @@ function M = Mz_pbk(S_pbk,Ns_pbk,kappasz_pbk,csn_pbk, ...
 % @Author: Bai Wei (baiweiphys@gmail.com, baiwei12@mail.ustc.edu.cn)
 % @Date: 2023-08-12
 % @LastEditors: Bai Wei
-% @LastEditTime: 2025.02.13
+% @LastEditTime: 2026.01.22
 
-index_Mpbk = @(s,idx_n,l,j) SNLJmap2oneDim(Ns_pbk,kappasz_pbk,s,idx_n,l,j);
-len_Mpbk = getLen_SNLJmap2oneDim(S_pbk,Ns_pbk,kappasz_pbk) + 1;
-index_BlkMatrix = getIndexOfBlkMatrix_pbk(S_pbk,Ns_pbk,kappasz_pbk,MatrixNo);
-firstIndex = index_BlkMatrix(1)-1;
-len_row = len_Mpbk;
-len_col = 3*len_Mpbk + 6;
+
+% Step 0
+idx_M_pbk = @(s,idx_n,l,j) SNLJmap2oneDim(Ns_pbk,kappasz_pbk,s,idx_n,l,j);
+
+% Step 1:  Obtain the dimensions of matrix Mzpbk.
+len_M_pbk = 0.5*sum((2*Ns_pbk+1).*(kappasz_pbk+4).*(kappasz_pbk+1)) + 1;
+
+% Step 2: create Matrix
+idx_BlkMatrix = getIndexOfBlkMatrix_pbk(Ns_pbk,kappasz_pbk,MatrixNo);
+firstIdx = idx_BlkMatrix(1)-1;
+%
+len_row = len_M_pbk;
+len_col = 3*len_M_pbk + 6;
 M = zeros(len_row,len_col);
 
+
+% Step 3: Assemble Matrix
 for s=1:S_pbk
     Nvec = -Ns_pbk(s):Ns_pbk(s);
     for idx_n=1:(2*Ns_pbk(s)+1)
         n = Nvec(idx_n);
         for l = 1:kappasz_pbk(s)+1
             for jj = 1:l+1
-                snlj = index_Mpbk(s,idx_n,l,jj);
-                M(snlj,firstIndex+snlj) = M(snlj,firstIndex+snlj) + csn_pbk(s,n);
+                snlj = idx_M_pbk(s,idx_n,l,jj);
+                M(snlj,firstIdx+snlj) = M(snlj,firstIdx+snlj) + csn_pbk(s,n);
                 if(jj<l+1) 
-                    M(snlj,firstIndex+snlj+1) = M(snlj,firstIndex+snlj+1)+1;
+                    % snljp1 = index_Mpbk(s,idx_n,l,jj+1);
+                    M(snlj,firstIdx+snlj+1) = M(snlj,firstIdx+snlj+1)+1;
                 end
                 if (jj==l)
                     if (l<=kappasz_pbk(s)-1)
@@ -61,15 +71,19 @@ for s=1:S_pbk
     end
 end
 
+
+% step 4: jxyz
 for s=1:S_pbk
     for idx_n=1:(2*Ns_pbk(s)+1)
         for l = 1:kappasz_pbk(s)+1
-            snl1 = index_Mpbk(s,idx_n,l,1);
-            M(len_Mpbk,firstIndex+snl1) = M(len_Mpbk,firstIndex+snl1) + 1; 
+            snl1 = idx_M_pbk(s,idx_n,l,1);
+            M(len_M_pbk,firstIdx+snl1) = M(len_M_pbk,firstIdx+snl1) + 1; 
         end
     end
 end
 
-M(len_Mpbk,end-EzNo) = M(len_Mpbk,end-EzNo) + by20;
+% for z-dirction:
+% by20 = 1i*\epsilon_0*sum_{s}\omega_{ps}^2
+M(len_M_pbk,end-EzNo) = M(len_M_pbk,end-EzNo) + by20;
 
 end

@@ -5,15 +5,15 @@ clear;
 clc;
 
 % load data
-load('./BOPBK_data/saveData_Electron_Whistler_bm8_Lazar2011Fig2.mat');
+load('./pbkData/saveData_Electron_Whistler_bm8_Lazar2011Fig2.mat');
 w_bm = wws;
 k0_bm = pas;
 %
-load('./BOPBK_data/saveData_Electron_Whistler_pbk2_Lazar2011Fig2.mat');
+load('./pbkData/saveData_Electron_Whistler_pbk2_Lazar2011Fig2.mat');
 w_pbk2 = wws;
 k0_pbk2 = pas;
 %
-load('./BOPBK_data/saveData_Electron_Whistler_pbk6_Lazar2011Fig2.mat');
+load('./pbkData/saveData_Electron_Whistler_pbk6_Lazar2011Fig2.mat');
 w_pbk6 = wws;
 k0_pbk6 = pas;
 

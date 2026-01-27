@@ -1,9 +1,9 @@
-function [S,Ns,index_pbk,index_bm,kappasz,kappasx,vtsz,vtsx,Tsz,Tsx,sgms,wps,wcs,us0,rhocs,lambdaDs] = getPlasmaParameters(B0,par) 
+function plasmaParams = getPlasmaParameters(B0,par,J_opt) 
 % @Description: To obtain the plasma parameters.
 % @Filename: getPlasmaParameters.m
 % @Date: 2022-01-05
 % @LastEditors: Bai Wei
-% @LastEditTime: 2025-11-07
+% @LastEditTime: 2026-01-25
 
 params_with_unit;
 
@@ -41,6 +41,10 @@ for s=1:S
     us0(s) = par.data(s,6).*sqrt(c2); 
 end
 
+% for i=1:S
+%     % parallel drift velocity, normalized by vc
+%     us0(s) = par.data(s,6).*sqrt(2*kB*Ts_parallel(3)/ms(3)); 
+% end
 
 lambdaDs = sqrt(epsilon0*kB*Tsz./(ns0.*qs.^2)); % Debye length, Tzs
 kDs = 1.0./lambdaDs;
@@ -53,6 +57,34 @@ wps2 = wps.^2;
 
 index_pbk = (kappasz<kappasz_threshold); % index of PBK plasmas for s-th species
 index_bm = (kappasz>kappasz_threshold); % index of bi-Maxwellian plasmas for s-th species
+
+% 
+% betasz=2*mu0*kB.*ns0.*Tzs./B0^2;
+% betasp=2*mu0*kB.*ns0.*Tps./B0^2;
+% vA=B0/sqrt(mu0*sum(ms.*ns0)); %
+% cS=sqrt(2*min(kB*Tzs)/max(ms));
+
+
+%% Output parameters
+plasmaParams.S = S;
+plasmaParams.Ns = Ns;
+plasmaParams.J_opt = J_opt;
+plasmaParams.index_pbk = index_pbk;
+plasmaParams.index_bm = index_bm;
+plasmaParams.kappasz = kappasz;
+plasmaParams.kappasx = kappasx;
+plasmaParams.vtsz = vtsz;
+plasmaParams.vtsx = vtsx;
+plasmaParams.Tsz = Tsz;
+plasmaParams.Tsx = Tsx;
+plasmaParams.sgms = sgms;
+plasmaParams.wps = wps;
+plasmaParams.wcs = wcs;
+plasmaParams.us0 = us0;
+plasmaParams.rhocs = rhocs;
+plasmaParams.lambdaDs = lambdaDs;
+plasmaParams.ms = ms;
+plasmaParams.ns0 = ns0;
 
 
 end

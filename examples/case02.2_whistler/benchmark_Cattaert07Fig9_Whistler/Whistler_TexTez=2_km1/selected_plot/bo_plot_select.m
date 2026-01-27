@@ -293,7 +293,7 @@ for jpl=1:npl
 
   end
 end
-save('saveData_Cattaert2007Fig9_TxTz2.mat','pas','wws');
+save('saveData_Cattaert2007Fig9_TexTez2.mat','pas','wws');
 
 
 set(gcf,'Units','inches');
@@ -301,5 +301,5 @@ screenposition = get(gcf,'Position');
 set(gcf,'PaperPosition',[0 0 screenposition(3:4)],...
   'PaperSize',[screenposition(3:4)]);
 
-print(gcf,'-depsc',['Cattaert2007Fig9_TxTz2_','select.eps']);
-savefig(['Cattaert2007Fig9_TxTz2_','select.fig']);
+print(gcf,'-depsc',['Cattaert2007Fig9_TexTez2_','select.eps']);
+savefig(['Cattaert2007Fig9_TexTez2_','select.fig']);

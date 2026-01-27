@@ -5,10 +5,10 @@
 % @Author: Bai Wei (baiweiphys@gmail.com, baiwei12@mail.ustc.edu.cn)
 % @Date: 2023-08-1
 % @LastEditors: Bai Wei
-% @LastEditTime: 2025-02-06
+% @LastEditTime: 2026-01-25
 
-close all;
-clear;
+% close all;
+% clear;
 % clc;
 
 %% input parameters
@@ -20,30 +20,42 @@ clear;
 % J=4.2:  new calculation, J=4, I=5
 % J=8.1:  Ronnmark1982, 8-pole for Z function
 % J=8.2:  J=8, I=8
+% J=8.3:  J=8, I=10
+% J=8.4:  optimized J=8 pole from Xie 2024
+% J=10.1  J=10 (I=12,K=8) pole from Xie 2024
+% J=10.2  J=10 (I=14,K=6) pole from Xie 2024
+% J=12.1: J=12; I=16; 2014;
+% J=12.2: J=12; I=16; 2018
+% J=12.3: J=12; I=12;
+% J=16.1: J=16; I=18; 
+% J=16.2: J=16 (I=16,K=20) pole from Xie 2024 
+% J=16.3: J=16 (J=24,I=8) pole from Xie 2024
+% J=20:   J=20 (I=23,K=17) pole from Xie 2024
+% J=24.1: (J=24,I=24) pole from BO code
+% J=24.2: J=24 (I=24,K=24) pole from Xie 2024
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-J_opt = 8.1; 
+J_opt = 8.1;
 
 deg = 1e-6;
 theta = deg*pi/180;
 %
-sp = 1; % sp=0: 'eig()'; sp=1: sparse 'eigs()'; sp>1: Computing Eigenvalues with 'gpuArray' and 'eig()'.
+sp = 0; % sp=0: 'eig()'; sp=1: sparse 'eigs()'; sp>1: Computing Eigenvalues with 'gpuArray' and 'eig()'.
 B0 = 1.0e-5;  % background magnetic field in z direction 
 nk = 160;
 kk0 = linspace(1e-3,2.5,nk);
 EPS0 = 1e-2; % for integrals S1,S2,...,S6 when \lambda_s \rightarrow 0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 modules_path = '../../../src';
 addpath(modules_path);
 par = importdata('./bopbk.in', ' ', 1); % read input parameters
-[S,Ns,index_pbk,index_bm,kappasz,kappasx,vtsz,vtsx,Tsz,Tsx,sgms,wps,wcs,us0,rhocs,lambdaDs] = getPlasmaParameters(B0,par); 
-if sum(index_bm)==0
-    solver = @(kx,kz,theta) solver_pbk(kx,kz,theta,B0,par,sp,EPS0);
-elseif sum(index_pbk)==0
-    solver = @(kx,kz,theta) solver_bm(J_opt,kx,kz,theta,B0,par,sp,EPS0);
+plasmaParams = getPlasmaParameters(B0,par,J_opt); 
+if sum(plasmaParams.index_bm)==0
+    solver = @(kx,kz,theta) solver_pbk(kx,kz,theta,plasmaParams,sp,EPS0);
+elseif sum(plasmaParams.index_pbk)==0
+    solver = @(kx,kz,theta) solver_bm(kx,kz,theta,plasmaParams,sp,EPS0);
 else
-    solver = @(kx,kz,theta) solver_mixed(J_opt,kx,kz,theta,B0,par,sp,EPS0);
+    solver = @(kx,kz,theta) solver_mixed(kx,kz,theta,plasmaParams,sp,EPS0);
 end
 
 params_with_unit;
@@ -52,12 +64,31 @@ params_with_unit;
 %     disp('Wrong input data!');
 % end
 
-%
-kDs = 1./lambdaDs;
-kn = sqrt(kDs(1)^2 + kDs(2)^2);
-wn = sqrt(wps(1)^2 + wps(2)^2);
+%% Input parameters
+S = plasmaParams.S;
+Ns = plasmaParams.Ns;
+index_pbk = plasmaParams.index_pbk;
+index_bm = plasmaParams.index_bm;
+kappasz = plasmaParams.kappasz;
+kappasx = plasmaParams.kappasx;
+vtsz = plasmaParams.vtsz;
+vtsx = plasmaParams.vtsx;
+Tsz = plasmaParams.Tsz;
+Tsx = plasmaParams.Tsx;
+sgms = plasmaParams.sgms;
+wps = plasmaParams.wps;
+wcs = plasmaParams.wcs;
+us0 = plasmaParams.us0;
+rhocs = plasmaParams.rhocs;
+lambdaDs = plasmaParams.lambdaDs;
+ms = plasmaParams.ms;
+ns0 = plasmaParams.ns0;
 
-ms=par.data(:,2)*me; % mass
+%
+% kDs = 1./lambdaDs;
+% kn = sqrt(kDs(1)^2 + kDs(2)^2);
+% wn = sqrt(wps(1)^2 + wps(2)^2);
+
 % Thermal speed of the sth component is vs = (Tsparallel/ms)^0.5;
 vs = (kB*Tsz./ms).^0.5;
 
@@ -79,29 +110,22 @@ for ik = 1:nk
     www(ik,1,:) = w;
     %
     if(mod(ik,nk/5) == 0)
-        fprintf('The case completion: %2.2f%%\n',ik/nk*100);
+        fprintf('Progress: %2.2f%%\n',ik/nk*100);
     end
 end
-
-%
+runtime = toc;
+display_runtime(runtime);
+fprintf('\n=====\n');
 rmpath(modules_path); % Remove folders from search path
+%
 kk = kk0*wps(1)/sqrt(c2);
 kxx = k*sin(theta); % perpendicular to the magnetic B0
 kzz = k*cos(theta); % parallel to the magnetic B0
 
-runtime = toc;
-disp(['Time elapsed: ', num2str(runtime/60), ' minutes']);
-
 %%
-for s=1:S
-    ms(s)=par.data(s,2)*me; % mass
-    ns0(s)=par.data(s,3); % desity unit: m^-3
-    Tsz(s) = par.data(s,4)*qe/kB; % parallel temperature, unit: eV -> K
-    Tsx(s) = par.data(s,5)*qe/kB; % perp temperature, unit: eV -> K
-end
 betasz = 2*mu0*kB.*ns0.*Tsz./B0^2; % beta_para
 betasx = 2*mu0*kB.*ns0.*Tsx./B0^2; % beta_perp
-vA = B0/sqrt(mu0*sum(ms'.*ns0)); % Alfven speed
+vA = B0/sqrt(mu0*sum(ms.*ns0)); % Alfven speed
 %
 disp(['betaz = ', num2str(betasz)]);
 disp(['betax = ', num2str(betasx)]);
@@ -164,4 +188,3 @@ plot(kk0,imag_w(:,rootNo)/abs(wps(1)),'b.-','markersize',15);
 xlabel('ck/\omega_{pe}');
 ylabel('\gamma/\omega_{pe}');
 grid on;
-

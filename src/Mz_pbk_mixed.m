@@ -1,4 +1,4 @@
-function M = Mz_pbk_mixed(S_pbk,S_bm,Ns_pbk,Ns_bm,kappasz_pbk,J,csn_pbk, ...
+function M = Mz_pbk_mixed(S_pbk,Ns_pbk,Ns_bm,kappasz_pbk,J,csn_pbk, ...
                           bz11snl,bz21snl,bz31snl, ...
                           bz13snl,bz23snl,bz33snl, ...
                           bz12snl,bz22snl,bz32snl, ...
@@ -10,29 +10,45 @@ function M = Mz_pbk_mixed(S_pbk,S_bm,Ns_pbk,Ns_bm,kappasz_pbk,J,csn_pbk, ...
 % @Author: Bai Wei (baiweiphys@gmail.com, baiwei12@mail.ustc.edu.cn)
 % @Date: 2023-10-16
 % @LastEditors: Bai Wei
-% @LastEditTime: 2025.02.13
+% @LastEditTime: 2026.01.24
 
-index_Mpbk = @(s,idx_n,l,j) SNLJmap2oneDim(Ns_pbk,kappasz_pbk,s,idx_n,l,j);
-len_Mpbk = getLen_SNLJmap2oneDim(S_pbk,Ns_pbk,kappasz_pbk) + 1; % PBK submatrix
-len_Mbm = getLen_SNJmap2oneDim(S_bm,Ns_bm,J) + 1;  % BM submatrix
-index_BlkMatrix = getIndexOfBlkMatrix_mixed(S_pbk,S_bm,Ns_pbk,Ns_bm,kappasz_pbk,J,MatrixNo);
-firstIndex = index_BlkMatrix(1)-1;
-len_pbk = 3*len_Mpbk;
-len_bm = 3*len_Mbm;
-len_row = len_Mpbk;
+% ExyzNo = 5 for Ex
+% ExyzNo = 4 for Ey
+% ExyzNo = 3 for Ez
+
+idx_M_pbk = @(s,idx_n,l,j) SNLJmap2oneDim(Ns_pbk,kappasz_pbk,s,idx_n,l,j);
+
+% Step 1: Obtain the dimensions of submatrices M_pbk and M_bm.
+len_M_pbk = 0.5*sum((2*Ns_pbk+1).*(kappasz_pbk+4).*(kappasz_pbk+1)) + 1; % PBK submatrix
+len_M_bm = J*sum(2*Ns_bm+1) + 1;  % BM submatrix
+
+
+% Step 2: create Matrix
+idx_BlkMatrix = getIndexOfBlkMatrix_mixed(Ns_pbk,Ns_bm,kappasz_pbk,J,MatrixNo);
+firstIdx = idx_BlkMatrix(1)-1;
+
+% for PBK matrix 
+len_pbk = 3*len_M_pbk;
+
+% for bi-Maxwellian matrix 
+len_bm = 3*len_M_bm;
+
+len_row = len_M_pbk;
 len_col = len_pbk + len_bm + 9;
 M = zeros(len_row,len_col);
 
+% Step 3: Assemble Matrix
 for s=1:S_pbk
     Nvec = -Ns_pbk(s):Ns_pbk(s);
     for idx_n=1:(2*Ns_pbk(s)+1)
         n = Nvec(idx_n);
         for l = 1:kappasz_pbk(s)+1
             for jj = 1:l+1
-                snlj = index_Mpbk(s,idx_n,l,jj);
-                M(snlj,firstIndex+snlj) = M(snlj,firstIndex+snlj) + csn_pbk(s,n);
+                snlj = idx_M_pbk(s,idx_n,l,jj);
+                M(snlj,firstIdx+snlj) = M(snlj,firstIdx+snlj) + csn_pbk(s,n);
                 if(jj<l+1)  
-                    M(snlj,firstIndex+snlj+1) = M(snlj,firstIndex+snlj+1)+1;
+                    % snljp1 = index_Mpbk(s,idx_n,l,jj+1);
+                    M(snlj,firstIdx+snlj+1) = M(snlj,firstIdx+snlj+1)+1;
                 end
                 if (jj==l)
                     if (l<=kappasz_pbk(s)-1)
@@ -65,14 +81,20 @@ for s=1:S_pbk
     end
 end
 
+
+% step 4: jxyz
 for s=1:S_pbk
     for idx_n=1:(2*Ns_pbk(s)+1)
+        % n = Nvector(in);
         for l = 1:kappasz_pbk(s)+1 
-            snl1 = index_Mpbk(s,idx_n,l,1);
-            M(len_Mpbk,firstIndex+snl1) = M(len_Mpbk,firstIndex+snl1) + 1; 
+            snl1 = idx_M_pbk(s,idx_n,l,1);
+            M(len_M_pbk,firstIdx+snl1) = M(len_M_pbk,firstIdx+snl1) + 1; 
         end
     end
 end
-M(len_Mpbk,end-EzNo) = M(len_Mpbk,end-EzNo) + by20;
+
+% for z-dirction:
+% by20 = 1i*\epsilon_0*sum_{s}\omega_{ps}^2
+M(len_M_pbk,end-EzNo) = M(len_M_pbk,end-EzNo) + by20;
 
 end

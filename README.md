@@ -44,26 +44,28 @@ Four benchmark cases are provided as representative examples:
 
 ## How to run the code:
 
-1. **Run a single test case**:
+### Usage Instructions
+
+1. **Run all cases**: 
+   - Execute `runall.m` to perform all simulations in one go. Data are saved to `results/plt_Fig**/pbkData/`.
+   - **Run individual cases**: Standalone scripts (e.g., `run_case3_firehose3D.m` for $k$-$\theta$ scans) can be executed separately; they store results in the same directory.
+   - **Generate plots**: Execute `plotall.m` to process all saved data. Figures are automatically exported as `.pdf` and `.fig` files.
+
+
+2. **Run a single test case**:
    - Navigate to the specific case directory: `BO-PBK/examples/case_***/`
    - Configure the input parameters in the input file `bopbk.in`
    - Set parameters such as `J`, `deg` (propagation angles in degrees), and `B0` (background magnetic field in z-direction)
    - Run the main script `main_bopbk.m`
    - Results will be displayed as plots and saved in the `output` directory
 
-2. Show the benchmark cases
-   - **Example 1:**
-        - 1. Run `case02.1_whistler/main_bopbk`
-  Then run `selected-plot/bo_wpdat`
+
+3. **Show the benchmark cases**：
+   - **Example:**
+        - 1. Run `case02.1_whistler/main_bopbk`,Then run `selected-plot/bo_wpdat`
         - 2. Copy `*.dat` files to `../../plt_Fig4/BOPBK_data`
         - 3. Repeat the above steps for `Whistler_Lazar11Fig2_pbk2/` and `Whistler_Lazar11Fig2_pbk6/`. After running each, copy the corresponding `./selected-plot/*.dat` files to `plt_Fig4/BOPBK_data`
         - 4. Run `/plt_Fig4/plt_benchmark_lazar2011Fig2.m`
-  
-   - **Example 2:**
-        - 1. Run `case03.1_firehose/Astfalk2017Fig1_OFHI3d_bm/main_bopbk.m`
-        - 2. Copy `/output/*.dat` files to `../../plt_Fig8/pbk_data`
-        - 3. Repeat the above steps for `Astfalk2017Fig1_OFHI3d_pbk210/main_bopbk.m/`. After running it, copy the corresponding `output/*.dat` files to `plt_Fig8/pbk_data`
-        - 4. Run `/plt_Fig8/plt_Astfalk2017fig1_contour2.m`
          
 ## References
 Wei Bai, and Huasheng Xie. “BO-PBK: A comprehensive solver for dispersion relations of obliquely propagating waves in magnetized multi-species plasma with anisotropic loss-cone drift product-bi-kappa distribution.” arXiv preprint arXiv:2512.06901, 2025, https://arxiv.org/abs/2512.06901.

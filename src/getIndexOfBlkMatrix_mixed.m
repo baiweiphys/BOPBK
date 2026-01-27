@@ -1,4 +1,4 @@
-function idx = getIndexOfBlkMatrix_mixed(S_pbk,S_bm,Ns_pbk,Ns_bm,kappasz_pbk,J,MatrixNo)
+function idx = getIndexOfBlkMatrix_mixed(Ns_pbk,Ns_bm,kappasz_pbk,J,MatrixNo)
 % @Description: To obtain the index of a subblock matrix within a composite 
 % matrix that exhibits a mixed plasma distribution of PBK and bi-Maxwellian.
 % @Filename: getIndexOfBlkMatrix_mixed.m
@@ -7,8 +7,10 @@ function idx = getIndexOfBlkMatrix_mixed(S_pbk,S_bm,Ns_pbk,Ns_bm,kappasz_pbk,J,M
 % @LastEditors: Bai Wei
 % @LastEditTime: 2025.02.13
 
-len_Mpbk = getLen_SNLJmap2oneDim(S_pbk,Ns_pbk,kappasz_pbk) + 1;
-len_Mmaxwell = getLen_SNJmap2oneDim(S_bm,Ns_bm,J) + 1;
+% for PBK matrix 
+len_Mpbk = 0.5*sum((2*Ns_pbk+1).*(kappasz_pbk+4).*(kappasz_pbk+1)) + 1;
+% for bi-Maxwellian matrix 
+len_Mmaxwell = J*sum(2*Ns_bm+1) + 1;
 
 switch MatrixNo
     case 1

@@ -1,13 +1,13 @@
-function idx = getIndexOfBlkMatrix_maxwell(S_bm,Ns_bm,J,MatrixNo)
+function idx = getIndexOfBlkMatrix_maxwell(Ns_bm,J,MatrixNo)
 % @Description: To obtain the index of a subblock matrix within a composite 
 % matrix that exhibits a bi-Maxwellian plasma distribution.
 % @Filename: getIndexOfBlkMatrix_maxwell.m
 % @Author: Bai Wei (baiwei12@mail.ustc.edu.cn, baiweiphys@gmail.com)
 % @Date: 2023-09-03
 % @LastEditors: Bai Wei
-% @LastEditTime: 2025-02-04
+% @LastEditTime: 2026-01-25
 
-len_subMmaxwell = getLen_SNJmap2oneDim(S_bm,Ns_bm,J) + 1;
+len_subMmaxwell = J*sum(2*Ns_bm+1) + 1;
 
 switch MatrixNo
     case 1
@@ -17,5 +17,5 @@ switch MatrixNo
     case 3
         idx = 2*len_subMmaxwell+1:3*len_subMmaxwell; % for Mz_maxwell
     otherwise 
-        disp('bi-Maxwellian MatrixNo must be an integer in the range 1 to 3');
+        disp('bi-Maxwellian MatrixNo must be a integrer for in range 1 to 3.');
 end
