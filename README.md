@@ -1,7 +1,7 @@
 # BOPBK
 
 **Version 1.0** (Released on 2026-05-28)  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20433589.svg)]https://doi.org/10.5281/zenodo.20433589
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20433589.svg)](https://doi.org/10.5281/zenodo.20433589)
 [GitHub Repository](https://github.com/baiweiphys/BOPBK/) | [Releases](https://github.com/baiweiphys/BOPBK/releases)
 
 **`BOPBK`** (BO–Product-Bi-Kappa) is a Matlab numerical code developed by Wei Bai, under the supervision of Dr. Huasheng Xie, who also proposed the BO framework. It is designed for analyzing plasma waves and instabilities in both space and laboratory plasmas, specializing in obliquely propagating waves in magnetized, multi-species hot plasmas.
