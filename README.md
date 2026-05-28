@@ -1,8 +1,7 @@
 # BOPBK
 
 **Version 1.0** (Released on 2026-05-28)  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20433589.svg)]
-https://doi.org/10.5281/zenodo.20433589
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20433589.svg)]https://doi.org/10.5281/zenodo.20433589
 
 [GitHub Repository](https://github.com/baiweiphys/BOPBK/) | [Releases](https://github.com/baiweiphys/BOPBK/releases)
 
