@@ -1,8 +1,11 @@
+% RUN_CASE3_FIREHOSE3D Execute the 3D firehose benchmark case.
+% This script runs the configured case under examples/case03_firehose
+% and copies the generated output file into the corresponding results folder.
 
 clear; close all;
 
 %% Case#3 (OFHI_bm 3D)
-case_path = './examples/case03_firehose';
+case_path = './examples/case03.1_firehose_Astfalk2017';
 subcase = 'Astfalk2017Fig1_OFHI3d_bm'; 
 dataFile = 'output/Astfalk2017Fig1_OFHI3d_bm.mat';
 %
@@ -27,7 +30,7 @@ copyfile(pbkdata,datapath);
 %% Case#3 (OFHI_pbk210 3D)
 clear; close all;
 %
-case_path = './examples/case03_firehose';
+case_path = './examples/case03.1_firehose_Astfalk2017';
 subcase = 'Astfalk2017Fig1_OFHI3d_pbk210'; 
 dataFile = 'output/Astfalk2017Fig1_OFHI3d_pbk210.mat';
 %
