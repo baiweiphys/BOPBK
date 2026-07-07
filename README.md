@@ -64,7 +64,7 @@ Example for Fig. 4 of Lazar et al. (2010):
 The MATLAB scripts `run_case3_firehose3D.m` and `run_case4dot2_EMIC3D.m` perform 3-D parameter scans and are time-consuming to run. For efficient computation, the Julia version (BOPBK.jl) is recommended.
 
 
-## When referencing `BO-KM` in a publication, please cite:
+## When referencing `BO-PBK` in a publication, please cite:
 ```bibtex
 @article{BAI2026110281,
 title = {BO-PBK: A new solver for dispersion relations of obliquely propagating waves in multi-species plasmas with anisotropic loss-cone drift product-bi-kappa distributions},
